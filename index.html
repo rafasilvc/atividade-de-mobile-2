@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#6c3bff" />
+  <meta name="description" content="GeoExplorer — Descubra países do mundo" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="GeoExplorer" />
+  <title>GeoExplorer</title>
+  <link rel="manifest" href="manifest.json" />
+  <link rel="apple-touch-icon" href="icons/icon-192.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Clash+Display:wght@400;600;700&family=Cabinet+Grotesk:wght@400;500;700;800&family=Instrument+Mono&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;700;900&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+ 
+ 
+  <div id="installBanner" class="install-banner hidden">
+    <span>📲 Instale o GeoExplorer!</span>
+    <button id="installBtn">Instalar</button>
+    <button id="dismissBtn">✕</button>
+  </div>
+ 
+  
+  <nav class="navbar">
+    <div class="nav-logo">
+      <div class="logo-orb"></div>
+      <span class="logo-name">GeoExplorer</span>
+    </div>
+    <div class="nav-right">
+      <span id="offlineIndicator" class="offline-pill hidden">⚡ Offline</span>
+      <button class="theme-toggle" id="btnTheme" onclick="toggleTheme()" aria-label="Alternar tema">
+        <span id="themeIcon">🌙</span>
+      </button>
+    </div>
+  </nav>
+ 
+  
+  <header class="hero">
+    <div class="hero-bg">
+      <div class="orb orb1"></div>
+      <div class="orb orb2"></div>
+      <div class="orb orb3"></div>
+    </div>
+    <div class="hero-content">
+      <div class="hero-tag">🌍 Explorador de Países</div>
+      <h1 class="hero-title">
+        Descubra o<br/>
+        <span class="gradient-text">Mundo</span>
+      </h1>
+      <p class="hero-sub">Busque qualquer país e explore dados, mapas e muito mais</p>
+ 
+     
+      <div class="search-container">
+        <div class="search-field">
+          <span class="search-ico">🔍</span>
+          <input
+            type="text"
+            id="paisInput"
+            placeholder="Digite um país... Ex: Japão, França"
+            autocomplete="off"
+            spellcheck="false"
+          />
+          <button class="clear-btn hidden" id="btnClear" onclick="limparBusca()">✕</button>
+        </div>
+        <button class="btn-primary" onclick="buscarPais()">
+          <span>Buscar</span>
+          <span class="btn-arrow">→</span>
+        </button>
+      </div>
+ 
+      <button class="btn-geo" id="btnGeo" onclick="buscarPorLocalizacao()">
+        <span class="geo-pulse"></span>
+        <span>📍 Detectar minha localização</span>
+      </button>
+    </div>
+  </header>
+ 
+  
+  <section class="chips-section">
+    <p class="chips-label">Destinos populares</p>
+    <div class="chips-track">
+      <button class="chip" onclick="buscarRapido('brasil')">🇧🇷 Brasil</button>
+      <button class="chip" onclick="buscarRapido('japão')">🇯🇵 Japão</button>
+      <button class="chip" onclick="buscarRapido('estados unidos')">🇺🇸 EUA</button>
+      <button class="chip" onclick="buscarRapido('alemanha')">🇩🇪 Alemanha</button>
+      <button class="chip" onclick="buscarRapido('egito')">🇪🇬 Egito</button>
+      <button class="chip" onclick="buscarRapido('austrália')">🇦🇺 Austrália</button>
+      <button class="chip" onclick="buscarRapido('índia')">🇮🇳 Índia</button>
+      <button class="chip" onclick="buscarRapido('argentina')">🇦🇷 Argentina</button>
+      <button class="chip" onclick="buscarRapido('china')">🇨🇳 China</button>
+      <button class="chip" onclick="buscarRapido('itália')">🇮🇹 Itália</button>
+    </div>
+  </section>
+ 
+  
+  <main class="main">
+    <div id="resultado"></div>
+ 
+    
+    <section class="history-wrap hidden" id="historySection">
+      <div class="history-header">
+        <h2 class="history-title">🕐 Buscas recentes</h2>
+        <button class="btn-clear-hist" onclick="limparHistorico()">Limpar tudo</button>
+      </div>
+      <div id="historyList" class="history-grid"></div>
+    </section>
+  </main>
+ 
+  <footer class="footer">
+    <p>Dados por <a href="https://restcountries.com" target="_blank">RestCountries</a> · Mapas por <a href="https://leafletjs.com" target="_blank">Leaflet</a> + <a href="https://openstreetmap.org" target="_blank">OSM</a></p>
+  </footer>
+ 
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
+ 
